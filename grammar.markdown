@@ -127,12 +127,16 @@ Some other commonly used types:
     sha1_hash   ::= byte[20]
     fingerprint ::= sha1_hash
 
-And timestamps with a point at infinity:
+And timestamps with a point at infinity[^infinity]:
 
     Time : (Nat+Inf)
     timestamp   ::= four_octet:Time
     timestamporinf ::= timestamp
                    >>= \x = IF x0 == 0 THEN Inf:Time ELSE x0
+
+[^infinity]: Modeling timestamps as the usual set of integers modulo 2^32 would
+be wrong; but infinity is probably wrong too. TODO: Define the necessary element
+in terms of higher-level semantics' expiration/validity definitions.
 
 # Elliptic curve cryptography definitions
 
